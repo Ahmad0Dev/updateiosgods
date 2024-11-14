@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Game Tracker</title>
+</head>
+<body>
+  <h1>Games List</h1>
+  <ul id="gameList"></ul>
+
+  <script>
+    async function fetchGames() {
+      const response = await fetch('https://script.google.com/macros/s/AKfycbyIvKVDTAacZBP04WU32x7Smttb3ODdsRsfmy83YJW6KAxwRqCo19zjpTESD0Ohifw/exec');  // استبدل هذا الرابط برابط التطبيق
+      const data = await response.json();
+
+      const gameList = document.getElementById('gameList');
+      data.forEach(game => {
+        const li = document.createElement('li');
+        li.textContent = `${game.name} - ${game.url}`;
+        gameList.appendChild(li);
+      });
+    }
+
+    fetchGames();
+  </script>
+</body>
+</html>
